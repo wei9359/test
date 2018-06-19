@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jinfu.spring.mapper.UserMapper">
+    <resultMap id="user" type="User">
+        <id property="userID" column="userID"></id>
+        <result property="userName" column="userName"/>
+        <result property="userAge" column="userAge"/>
+        <result property="userPhoneNum" column="userPhoneNum"/>
+        <result property="userAdress" column="userAdress"/>
+    </resultMap>
+    <select id="queryList" parameterType="map" resultMap="user">
+        select * from user
+    </select>
+
+    <insert id="insert">
+        insert into user (userID,userName,userAge) values ('10005','hei',14)
+    </insert>
+
+    <select id="loginTest" parameterType="map" resultType="int">
+        select userAge from user where username = #{username} and userPassword = #{password}
+    </select>
+
+    <select id="getUser" resultMap="user">
+        select * from user  where userName = #{userName} and userID = #{userID}
+    </select>
+</mapper>
